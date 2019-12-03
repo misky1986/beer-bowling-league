@@ -8,8 +8,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85BCD56E-286F-4F4F-8FEC-B4E021555939}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Jenkinsfile = Jenkinsfile
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerBowlingLeagueTest", "BeerBowlingLeagueTest\BeerBowlingLeagueTest.csproj", "{93FF93AA-80A2-4123-84C3-ADED065FE6BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +24,10 @@ Global
 		{9384EDC3-974C-4ECD-94D8-A70905ECFA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9384EDC3-974C-4ECD-94D8-A70905ECFA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9384EDC3-974C-4ECD-94D8-A70905ECFA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93FF93AA-80A2-4123-84C3-ADED065FE6BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93FF93AA-80A2-4123-84C3-ADED065FE6BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93FF93AA-80A2-4123-84C3-ADED065FE6BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93FF93AA-80A2-4123-84C3-ADED065FE6BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
