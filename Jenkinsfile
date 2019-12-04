@@ -5,11 +5,6 @@ pipeline {
             steps {
                 dotnet build
             }
-        }
-		stage('Run Unit Test') {
-            steps {
-                dotnet test
-            }
-        }
+        }		
     }
 }
