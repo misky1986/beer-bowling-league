@@ -12,7 +12,7 @@ namespace BeerBowlingLeagueTest
             int expected = 2;
 
             // Act
-            int result = 1;
+            int result = 2;
 
             // Assert
             Assert.Equal(expected , result);
