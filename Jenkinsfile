@@ -22,6 +22,6 @@ pipeline {
             steps {
                 dotnet publish -c Release -o published
             }
-        }
+        }		
     }
 }

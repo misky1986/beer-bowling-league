@@ -8,7 +8,14 @@ namespace BeerBowlingLeagueTest
         [Fact]
         public void Test1()
         {
+            // Arrange
+            int expected = 2;
 
+            // Act
+            int result = 2;
+
+            // Assert
+            Assert.Equal(expected , result);
         }
     }
 }
