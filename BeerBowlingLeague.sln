@@ -8,11 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85BCD56E-286F-4F4F-8FEC-B4E021555939}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
 		Jenkinsfile = Jenkinsfile
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerBowlingLeagueTest", "BeerBowlingLeagueTest\BeerBowlingLeagueTest.csproj", "{93FF93AA-80A2-4123-84C3-ADED065FE6BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerBowlingLeagueTest", "BeerBowlingLeagueTest\BeerBowlingLeagueTest.csproj", "{93FF93AA-80A2-4123-84C3-ADED065FE6BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

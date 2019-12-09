@@ -1,9 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>88b99a6f-fb37-4426-95d8-9a1cb2c31fc5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>    
+    <IsPackable>true</IsPackable>    
+    <Version>1.0.2</Version>    
   </PropertyGroup>
 
   <ItemGroup>
