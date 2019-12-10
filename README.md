@@ -1,22 +1,34 @@
 ﻿# Beer Bowling League
 
-# Nexus
-https://arghya.xyz/articles/nexus-artifact-repository-for-dotnet/
+The following application is mainly created because my friends and I plays beer bowling once a year and we are quite competetive about it.
+Therefore I thought that i might aswell create and application so we are able to:
+* We tend to have the same problems every year setting up a tournament
+* Keep track of statictics for the current tournamnet but also all time stats
 
-## Nexus access
-User: admin
-Password: 650df91a-32ec-4f95-a039-b4186a3cd43c, lavet om til Test1234!
+In this way it is not up to discussion who has won the most time or made the most hit of all time.
 
-Nuget API Key:
+I am also doing this because i love to solve problems and learn new technologies.
 
-You can register this key for a given repository with the following command:
-nuget setapikey 376435d4-d431-3df6-a7ce-3d717acac354 -source http://localhost:8081/repository/{repository name}/
+## Architecture
+I aim for creating an architecture that is modern which makes makes it possible to use technologies like Docker and Kubernetes.
 
+The application would be build up by microservices that should only have one responsebility and decoubled from the rest of the system.
+I plan to introduce a message broker that should handle event based communication between the microserives.
 
-# command structure
-$ dotnet nuget push {nupkg-name} -k {nuget-api-key} -s {repository-source-uri}
-# actual command I issued (see above for key)
-$ dotnet nuget push LinqExtensions.1.0.0.nupkg -k a0fdd1a1-af65-3ac9-ab28-c0b1bfadc82a -s http://localhost:9876/repository/nuget-hosted/
+Below I have drawn my basic idea of how the architecture of the application would look like.
 
+```
+INSERT PICTURE
+```
 
-dotnet nuget push 
+## Technologies and Frameworks
+Docker
+Kubernetes
+.Net Core 3.1.100
+etc.
+
+## Blog
+My blog https://misky1986.github.io/misky-blog/ will be updated as I progress with the application. 
+
+## References
+https://docs.microsoft.com/en-us/dotnet/architecture/microservices/
