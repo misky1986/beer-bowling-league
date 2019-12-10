@@ -5,8 +5,11 @@ services:
     image: sonarqube    
     ports:    
       - 9000:9000
+    volumes:
+      - /sonarqubeserver/sonarqube/data:/opt/sonarqube/data \
+      - /sonarqubeserver/sonarqube/extensions:/opt/sonarqube/extensions \
 
-  nexus:
-    image: sonatype/nexus3
-    ports:
-      - 8081:8081
+ # nexus:
+ #   image: sonatype/nexus3
+ #   ports:
+ #     - 8081:8081    
