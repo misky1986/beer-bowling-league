@@ -1,0 +1,112 @@
+﻿@using System.Diagnostics
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient  Http
+
+@page "/player"
+
+<h3>Player Edit</h3>
+@if (playerModels == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm Model="@player" OnValidSubmit="@ValidSubmit">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="name" class="control-label">FirstName: </label>
+                    <InputText id="firstName" @bind-Value="player.FirstName" class="form-control" />
+                    <ValidationMessage For="@(() => player.FirstName)" />
+                </div>
+                <div class="form-group">
+                    <label for="address" class="control-label">LastName: </label>
+                    <InputText id="lastName" @bind-Value="player.LastName" class="form-control" />
+                    <ValidationMessage For="@(() => player.LastName)" />
+                </div>
+                <div class="form-group">
+                    <label for="city" class="control-label">Age: </label>
+                    <InputNumber id="age" @bind-Value="player.Age" class="form-control" />
+                    <ValidationMessage For="@(() => player.Age)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Alias: </label>
+                    <InputText id="alias" @bind-Value="player.Alias" class="form-control" />
+                    <ValidationMessage For="@(() => player.Alias)" />
+                </div>                
+                <button type="submit" onclick="@(async () => await CreatePlayer())">Add Player</button>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Alias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in playerModels)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Age</td>
+                            <td>@item.Alias</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@code {
+    private List<PlayerModel> playerModels = null;
+
+    public class PlayerModel
+    {
+        [Required]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string Alias { get; set; }
+    }
+
+    PlayerModel player = new PlayerModel();
+
+    private async void ValidSubmit()
+    {
+        Debug.WriteLine("ValidSubmit");
+        foreach (var item in playerModels)
+        {
+            Debug.WriteLine(item.FirstName);
+            Debug.WriteLine(item.LastName);
+            Debug.WriteLine(item.Age);
+            Debug.WriteLine(item.Alias);
+        }
+        //await Http.PostAsync("https://localhost:5001/api/v1/players", player);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        playerModels = await Http.GetJsonAsync<List<PlayerModel>>("https://localhost:5001/api/v1/players");
+    }
+
+    async Task CreatePlayer()
+    {
+        await Http.PostJsonAsync("https://localhost:5001/api/v1/players", player);
+    }
+
+    public class PlayerModelRequest
+    {
+        public PlayerModel[] results { get; set; }
+    }
+}
