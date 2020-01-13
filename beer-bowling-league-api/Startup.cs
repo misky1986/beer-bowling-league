@@ -28,10 +28,11 @@ namespace beer_bowling_league_api
 
             services.AddSwaggerGen(x => x.SwaggerDoc("v1", new OpenApiInfo { Title = "BeerBowling API", Version = "v1" }));
 
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+            services.AddCors(c => c.AddPolicy("AllowOrigin", builder => {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+            }));
 
             services.AddScoped<IPlayerService, PlayerService>();
 
@@ -59,7 +60,7 @@ namespace beer_bowling_league_api
                 option.SwaggerEndpoint(swaggerOptions.UiEndpoint, swaggerOptions.Description);
             });
 
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
             {

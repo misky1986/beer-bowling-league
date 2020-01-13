@@ -36,7 +36,7 @@ else
                     <InputText id="alias" @bind-Value="player.Alias" class="form-control" />
                     <ValidationMessage For="@(() => player.Alias)" />
                 </div>                
-                <button type="submit" onclick="@(async () => await CreatePlayer())">Add Player</button>
+                <button @onclick="@CreatePlayer">Add Player</button>
             </EditForm>
         </div>
     </div>
@@ -91,18 +91,17 @@ else
             Debug.WriteLine(item.LastName);
             Debug.WriteLine(item.Age);
             Debug.WriteLine(item.Alias);
-        }
-        //await Http.PostAsync("https://localhost:5001/api/v1/players", player);
+        }        
     }
 
     protected override async Task OnInitializedAsync()
     {
-        playerModels = await Http.GetJsonAsync<List<PlayerModel>>("https://localhost:5001/api/v1/players");
+        playerModels = await Http.GetJsonAsync<List<PlayerModel>>("https://localhost:44388/api/v1/players");
     }
 
-    async Task CreatePlayer()
+    private async Task CreatePlayer()
     {
-        await Http.PostJsonAsync("https://localhost:5001/api/v1/players", player);
+        await Http.PostJsonAsync("https://localhost:44388/api/v1/players", player);
     }
 
     public class PlayerModelRequest
