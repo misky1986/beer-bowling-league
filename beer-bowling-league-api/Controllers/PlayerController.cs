@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using beer_bowling_league_api.Contracts;
 using beer_bowling_league_api.Contracts.Requests;
 using beer_bowling_league_api.Contracts.Responses;
@@ -9,6 +6,9 @@ using beer_bowling_league_api.Entity;
 using beer_bowling_league_api.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace beer_bowling_league_api.Controllers
 {
@@ -16,9 +16,11 @@ namespace beer_bowling_league_api.Controllers
     public class PlayerController : ControllerBase
     {
         private readonly IPlayerService _playerService;
+        private readonly IMapper _mapper;
 
-        public PlayerController(IPlayerService playerService)
+        public PlayerController(IMapper mapper, IPlayerService playerService)
         {
+            _mapper = mapper;
             _playerService = playerService;
         }
 
@@ -26,13 +28,17 @@ namespace beer_bowling_league_api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var players = await _playerService.GetPlayersAsync();
-            var playerResponse = players.Select(player => new PlayerResponseDto
-            {
-                FirstName = player.FirstName,
-                LastName = player.LastName,
-                Age = player.Age,
-                Alias = player.Alias
-            });
+
+            // Before AutoMapper
+            //var playerResponse = players.Select(player => new PlayerResponseDto
+            //{
+            //    FirstName = player.FirstName,
+            //    LastName = player.LastName,
+            //    Age = player.Age,
+            //    Alias = player.Alias
+            //});
+
+            var playerResponse = players.Select(player => _mapper.Map<PlayerResponseDto>(player));
 
             return Ok(playerResponse);
         }
@@ -56,13 +62,16 @@ namespace beer_bowling_league_api.Controllers
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
             var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", player.Id.ToString());
 
-            var response = new PlayerResponseDto
-            {            
-                FirstName = player.FirstName,
-                LastName = player.LastName,
-                Age = player.Age,
-                Alias = player.Alias                
-            };
+            // Before AutoMapper
+            //var response = new PlayerResponseDto
+            //{            
+            //    FirstName = player.FirstName,
+            //    LastName = player.LastName,
+            //    Age = player.Age,
+            //    Alias = player.Alias                
+            //};
+
+            var response = _mapper.Map<PlayerResponseDto>(player);
 
             return Created(locationUri, response);
         }

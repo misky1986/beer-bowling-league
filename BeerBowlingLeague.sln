@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "beer-bowling-league-client", "beer-bowling-league-client\beer-bowling-league-client.csproj", "{BADA15A6-30BD-4CA0-A37B-B27C6DC25B1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beer-bowling-league-api", "beer-bowling-league-api\beer-bowling-league-api.csproj", "{06D0B6E0-B818-40B3-AE74-1E2799C2BAE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "beer-bowling-league-api", "beer-bowling-league-api\beer-bowling-league-api.csproj", "{06D0B6E0-B818-40B3-AE74-1E2799C2BAE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

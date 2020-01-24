@@ -1,3 +1,4 @@
+using AutoMapper;
 using beer_bowling_league_api.DataAccess;
 using beer_bowling_league_api.Service;
 using Microsoft.AspNetCore.Builder;
@@ -35,7 +36,7 @@ namespace beer_bowling_league_api
             }));
 
             services.AddScoped<IPlayerService, PlayerService>();
-
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
