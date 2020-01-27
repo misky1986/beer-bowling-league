@@ -6,8 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85BCD56E-286F-4F4F-8FEC-B4E021555939}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
 		docker-compose.yml = docker-compose.yml
 		Jenkinsfile = Jenkinsfile
+		micro-service.png = micro-service.png
 		README.md = README.md
 		SetupSonarQubeAndNexus.md = SetupSonarQubeAndNexus.md
 	EndProjectSection
