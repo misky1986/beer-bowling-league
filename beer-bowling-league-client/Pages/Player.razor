@@ -35,7 +35,22 @@ else
                     <label for="state" class="control-label">Alias: </label>
                     <InputText id="alias" @bind-Value="player.Alias" class="form-control" />
                     <ValidationMessage For="@(() => player.Alias)" />
-                </div>                
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Year Of Birth: </label>
+                    <InputNumber id="yearOfBirth" @bind-Value="player.YearOfBirth" class="form-control" />
+                    <ValidationMessage For="@(() => player.Alias)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Mounth: </label>
+                    <InputNumber id="mounth" @bind-Value="player.Mounth" class="form-control" />
+                    <ValidationMessage For="@(() => player.Mounth)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Year Of Birth: </label>
+                    <InputNumber id="day" @bind-Value="player.Day" class="form-control" />
+                    <ValidationMessage For="@(() => player.Day)" />
+                </div>
                 <button @onclick="@CreatePlayer">Add Player</button>
             </EditForm>
         </div>
@@ -78,6 +93,9 @@ else
         public string LastName { get; set; }
         public int Age { get; set; }
         public string Alias { get; set; }
+        public int YearOfBirth { get; set; }
+        public int Mounth { get; set; }
+        public int Day { get; set; }
     }
 
     PlayerModel player = new PlayerModel();

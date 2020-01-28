@@ -19,5 +19,6 @@ namespace beer_bowling_league_api.Entity
         public int Age { get; set; }
         [Required]
         public string Alias { get; set; }
+        public DateTime BirthDay { get; set; }        
     }
 }
