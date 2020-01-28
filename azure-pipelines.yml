@@ -1,0 +1,47 @@
+﻿# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+variables:
+  gh_user: misky1986
+  gh_repo: beer-bowling-league
+  gh_email: mskydt86@gmail.com
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  vmImage: 'ubuntu-latest'
+  tag: '$(Build.BuildNumber)'
+
+steps:
+- task: UseDotNet@2
+  displayName: ".NET Core 3.1.x"
+  inputs:
+    version: '3.1.x'
+    packageType: sdk
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'dotnet build $(buildConfiguration)'
+
+# - task: DotNetCoreCLI@2
+#   displayName: "Test"
+#   inputs:
+#     command: test
+#     projects: '**/*tests/*.csproj'
+#     arguments: '--configuration $(buildConfiguration)'
+
+# - task: DotNetCoreCLI@2
+#   displayName: "Publish"
+#   inputs:
+#     command: 'publish'
+#     publishWebProjects: true
+#     arguments: '-r linux-x64 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+# - task: PublishBuildArtifacts@1
+#   displayName: "Upload Artifacts"
+#   inputs:
+#     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+#     artifactName: 'hanselminutes'         git push --force origin master:gh-pages

@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines.yml = azure-pipelines.yml
 		docker-compose.yml = docker-compose.yml
 		Jenkinsfile = Jenkinsfile
-		micro-service.png = micro-service.png
 		README.md = README.md
 		SetupSonarQubeAndNexus.md = SetupSonarQubeAndNexus.md
 	EndProjectSection
@@ -17,6 +16,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "beer-bowling-league-client", "beer-bowling-league-client\beer-bowling-league-client.csproj", "{BADA15A6-30BD-4CA0-A37B-B27C6DC25B1B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "beer-bowling-league-api", "beer-bowling-league-api\beer-bowling-league-api.csproj", "{06D0B6E0-B818-40B3-AE74-1E2799C2BAE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{87B67C6B-B12C-4C28-B643-80E29B115171}"
+	ProjectSection(SolutionItems) = preProject
+		images\micro-service.png = images\micro-service.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87B67C6B-B12C-4C28-B643-80E29B115171} = {85BCD56E-286F-4F4F-8FEC-B4E021555939}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {36B18CA3-1D1D-42A5-B475-7AA464789880}
