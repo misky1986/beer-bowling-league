@@ -28,16 +28,7 @@ namespace beer_bowling_league_api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var players = await _playerService.GetPlayersAsync();
-
-            // Before AutoMapper
-            //var playerResponse = players.Select(player => new PlayerResponseDto
-            //{
-            //    FirstName = player.FirstName,
-            //    LastName = player.LastName,
-            //    Age = player.Age,
-            //    Alias = player.Alias
-            //});
-
+    
             var playerResponse = players.Select(player => _mapper.Map<PlayerResponseDto>(player));
 
             return Ok(playerResponse);
@@ -48,30 +39,12 @@ namespace beer_bowling_league_api.Controllers
         {
             var playerId = Guid.NewGuid();
 
-            //var player = new Player
-            //{
-            //    Id = playerId,
-            //    FirstName = playerRequestDto.FirstName,
-            //    LastName = playerRequestDto.LastName,
-            //    Age = playerRequestDto.Age,
-            //    Alias = playerRequestDto.Alias                
-            //};
-
             var playerEntity = _mapper.Map<Player>(playerRequestDto);
 
             await _playerService.CreatePlayerAsync(playerEntity);
 
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", playerEntity.Id.ToString());
-
-            // Before AutoMapper
-            //var response = new PlayerResponseDto
-            //{            
-            //    FirstName = player.FirstName,
-            //    LastName = player.LastName,
-            //    Age = player.Age,
-            //    Alias = player.Alias                
-            //};
+            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", playerEntity.Id.ToString()); 
 
             var response = _mapper.Map<PlayerResponseDto>(playerEntity);
 
