@@ -39,7 +39,7 @@ else
                 <div class="form-group">
                     <label for="state" class="control-label">Year Of Birth: </label>
                     <InputNumber id="yearOfBirth" @bind-Value="player.YearOfBirth" class="form-control" />
-                    <ValidationMessage For="@(() => player.Alias)" />
+                    <ValidationMessage For="@(() => player.YearOfBirth)" />
                 </div>
                 <div class="form-group">
                     <label for="state" class="control-label">Mounth: </label>
@@ -47,11 +47,11 @@ else
                     <ValidationMessage For="@(() => player.Mounth)" />
                 </div>
                 <div class="form-group">
-                    <label for="state" class="control-label">Year Of Birth: </label>
+                    <label for="state" class="control-label">Day: </label>
                     <InputNumber id="day" @bind-Value="player.Day" class="form-control" />
                     <ValidationMessage For="@(() => player.Day)" />
                 </div>
-                <button @onclick="@CreatePlayer">Add Player</button>
+                <button type="submit">Add Player</button>
             </EditForm>
         </div>
     </div>
@@ -89,37 +89,44 @@ else
     public class PlayerModel
     {
         [Required]
+        [StringLength(16, ErrorMessage = "First name is too long (16 character limit).")]
         public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(32, ErrorMessage = "First name is too long (32 character limit).")]
         public string LastName { get; set; }
+
+        [Range(15, 150, ErrorMessage = "Age ouf of range from 15 to 150")]
         public int Age { get; set; }
+
+        [Required]
+        [StringLength(1000, MinimumLength = 1, ErrorMessage = "Alias is requiered and needs to be at least 1 character long")]
         public string Alias { get; set; }
+
+        [Required]
+        [Range(1900, 3000, ErrorMessage = "Year of birth out of range from 1900 to 3000")]
         public int YearOfBirth { get; set; }
+
+        [Required]
+        [Range(1, 12, ErrorMessage = "Mounth of out of range from 1 to 12")]
         public int Mounth { get; set; }
+
+        [Required]
+        [Range(1, 31, ErrorMessage = "Day of out of range from 1 to 31")]
         public int Day { get; set; }
     }
 
     PlayerModel player = new PlayerModel();
 
-    private async void ValidSubmit()
+    private async Task ValidSubmit()
     {
-        Debug.WriteLine("ValidSubmit");
-        foreach (var item in playerModels)
-        {
-            Debug.WriteLine(item.FirstName);
-            Debug.WriteLine(item.LastName);
-            Debug.WriteLine(item.Age);
-            Debug.WriteLine(item.Alias);
-        }        
+        Console.WriteLine("Valid form input!");
+        await Http.PostJsonAsync("https://localhost:44388/api/v1/players", player);
     }
 
     protected override async Task OnInitializedAsync()
     {
         playerModels = await Http.GetJsonAsync<List<PlayerModel>>("https://localhost:44388/api/v1/players");
-    }
-
-    private async Task CreatePlayer()
-    {
-        await Http.PostJsonAsync("https://localhost:44388/api/v1/players", player);
     }
 
     public class PlayerModelRequest
