@@ -28,7 +28,12 @@ namespace beer_bowling_league_api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var players = await _playerService.GetPlayersAsync();
-    
+
+            if (players == null || !players.Any())
+            {
+                return NotFound();
+            }
+
             var playerResponse = players.Select(player => _mapper.Map<PlayerResponseDto>(player));
 
             return Ok(playerResponse);
@@ -36,7 +41,7 @@ namespace beer_bowling_league_api.Controllers
 
         [HttpPost(ApiRoutes.Players.Create)]
         public async Task<IActionResult> Create([FromBody] PlayerRequestDto playerRequestDto)
-        {
+        {          
             var playerId = Guid.NewGuid();
 
             var playerEntity = _mapper.Map<Player>(playerRequestDto);
