@@ -3,8 +3,6 @@ using beer_bowling_league_api.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace beer_bowling_league_api.Repository
@@ -29,13 +27,14 @@ namespace beer_bowling_league_api.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> CreatePlayerAsync(Player player)
+        public async Task<Player> CreatePlayerAsync(Player player)
         {
             await _dbContext.Players.AddAsync(player);
+                       
+            await _dbContext.SaveChangesAsync();
 
-            var playerCreated = await _dbContext.SaveChangesAsync();
-
-            return playerCreated > 0;
+            return player;
+                
         }
 
         public Task<bool> DeletePostAsync(Guid postId)

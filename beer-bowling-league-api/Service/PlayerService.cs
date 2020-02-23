@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using beer_bowling_league_api.Contracts.Requests;
 using beer_bowling_league_api.Contracts.Responses;
-using beer_bowling_league_api.DataAccess;
 using beer_bowling_league_api.Entity;
 using beer_bowling_league_api.Repository;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +21,13 @@ namespace beer_bowling_league_api.Service
             _mapper = mapper;
         }
 
-        public async Task<bool> CreatePlayerAsync(PlayerRequestDto player)
+        public async Task<PlayerResponseDto> CreatePlayerAsync(PlayerRequestDto player)
         {
             var mappedDomainPlayer = _mapper.Map<Player>(player);
 
-            var response = await _playerRepository.CreatePlayerAsync(mappedDomainPlayer);
+            var createdPlayer = await _playerRepository.CreatePlayerAsync(mappedDomainPlayer);
 
-            return response;
+            return _mapper.Map<PlayerResponseDto>(createdPlayer);
         }
 
         public async Task<IEnumerable<PlayerResponseDto>> GetPlayersAsync()

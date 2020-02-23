@@ -1,8 +1,6 @@
 ﻿using beer_bowling_league_api.Entity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace beer_bowling_league_api.Repository
@@ -11,7 +9,7 @@ namespace beer_bowling_league_api.Repository
     {
         Task<IEnumerable<Player>> GetPlayersAsync();
         Task<Player> GetPlayerByIdAsync(Guid id);
-        Task<bool> CreatePlayerAsync(Player player);
+        Task<Player> CreatePlayerAsync(Player player);
 
         Task<bool> UpdatePostAsync(Player playertoUpdate);
 

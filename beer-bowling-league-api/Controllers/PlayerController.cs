@@ -41,19 +41,13 @@ namespace beer_bowling_league_api.Controllers
 
         [HttpPost(ApiRoutes.Players.Create)]
         public async Task<IActionResult> Create([FromBody] PlayerRequestDto playerRequestDto)
-        {          
-            var playerId = Guid.NewGuid();
-
-            //var playerEntity = _mapper.Map<Player>(playerRequestDto);
-
-            await _playerService.CreatePlayerAsync(playerRequestDto);
+        {                      
+            var createdPlayer = await _playerService.CreatePlayerAsync(playerRequestDto);
 
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", playerId.ToString());// playerEntity.Id.ToString()); 
+            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", createdPlayer.ToString());// playerEntity.Id.ToString());             
 
-            //var response = _mapper.Map<PlayerResponseDto>(playerEntity);
-
-            return Created(locationUri, "");
+            return Created(locationUri, createdPlayer);
         }
     }
 }
