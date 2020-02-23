@@ -37,7 +37,7 @@ namespace beer_bowling_league_api.tests.Controller
             // Given
             var mockPlayerRepo = new Mock<IPlayerService>();
             mockPlayerRepo.Setup(repo => repo.GetPlayersAsync())
-                .Returns(GetPlayersAsync());
+                .Returns(GetPlayersMockedAsync());
             
             var controller = new PlayerController(_mapper, mockPlayerRepo.Object);
 
@@ -82,7 +82,7 @@ namespace beer_bowling_league_api.tests.Controller
             // Given
             var mockedPlayerService = new Mock<IPlayerService>();
             mockedPlayerService.Setup(repo => repo.GetPlayersAsync())
-                .Returns(Task.FromResult<List<Player>>(null));
+                .Returns(Task.FromResult<IEnumerable<PlayerResponseDto>>(null));
 
             var controller = new PlayerController(_mapper, mockedPlayerService.Object);
 
@@ -94,30 +94,29 @@ namespace beer_bowling_league_api.tests.Controller
             response.StatusCode.Should().Be(HttpStatusCode.NotFound.GetHashCode());
         }
 
-        private Task<List<Player>> GetPlayersAsync()
+        private async Task<IEnumerable<PlayerResponseDto>> GetPlayersMockedAsync()
         {
-            List<Player> playerList = new List<Player>();
+            List<PlayerResponseDto> playerList = new List<PlayerResponseDto>();
             
             for (int i = 1; i < 4; i++)
             {
-                var player = new Player()
-                {
-                    Id = Guid.NewGuid(),
+                var player = new PlayerResponseDto()
+
+                {                    
                     Age = i,
                     FirstName = "John" + i,
                     LastName = "Doe" + i,
-                    Alias = "Doozer" + i,
-                    BirthDay = new DateTime(1986,i,i)
+                    Alias = "Doozer" + i
                 };
                 playerList.Add(player);
             }
 
-            return Task.FromResult(playerList);
+            return await Task.FromResult(playerList);
         }
 
-        private Task<List<Player>> GetEmptyPlayerListsAsync()
+        private Task<IEnumerable<PlayerResponseDto>> GetEmptyPlayerListsAsync()
         {
-            List<Player> playerList = new List<Player>();
+            IEnumerable<PlayerResponseDto> playerList = new List<PlayerResponseDto>();
 
             return Task.FromResult(playerList);
         }
