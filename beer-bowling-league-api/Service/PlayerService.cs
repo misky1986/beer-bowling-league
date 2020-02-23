@@ -21,13 +21,13 @@ namespace beer_bowling_league_api.Service
             _mapper = mapper;
         }
 
-        public async Task<PlayerResponseDto> CreatePlayerAsync(PlayerRequestDto player)
+        public async Task<PlayerCreatedResponseDto> CreatePlayerAsync(PlayerRequestDto player)
         {
             var mappedDomainPlayer = _mapper.Map<Player>(player);
 
             var createdPlayer = await _playerRepository.CreatePlayerAsync(mappedDomainPlayer);
 
-            return _mapper.Map<PlayerResponseDto>(createdPlayer);
+            return _mapper.Map<PlayerCreatedResponseDto>(createdPlayer);
         }
 
         public async Task<IEnumerable<PlayerResponseDto>> GetPlayersAsync()

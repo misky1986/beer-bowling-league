@@ -45,8 +45,8 @@ namespace beer_bowling_league_api.Controllers
             var createdPlayer = await _playerService.CreatePlayerAsync(playerRequestDto);
 
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", createdPlayer.ToString());// playerEntity.Id.ToString());             
-
+            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", createdPlayer.ToString());
+            
             return Created(locationUri, createdPlayer);
         }
     }
