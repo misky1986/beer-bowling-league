@@ -44,16 +44,16 @@ namespace beer_bowling_league_api.Controllers
         {          
             var playerId = Guid.NewGuid();
 
-            var playerEntity = _mapper.Map<Player>(playerRequestDto);
+            //var playerEntity = _mapper.Map<Player>(playerRequestDto);
 
-            await _playerService.CreatePlayerAsync(playerEntity);
+            await _playerService.CreatePlayerAsync(playerRequestDto);
 
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", playerEntity.Id.ToString()); 
+            var locationUri = baseUrl + "/" + ApiRoutes.Players.Get.Replace("{playerId}", playerId.ToString());// playerEntity.Id.ToString()); 
 
-            var response = _mapper.Map<PlayerResponseDto>(playerEntity);
+            //var response = _mapper.Map<PlayerResponseDto>(playerEntity);
 
-            return Created(locationUri, response);
+            return Created(locationUri, "");
         }
     }
 }

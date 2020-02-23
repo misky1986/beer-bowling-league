@@ -1,5 +1,6 @@
 using AutoMapper;
 using beer_bowling_league_api.DataAccess;
+using beer_bowling_league_api.Repository;
 using beer_bowling_league_api.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,7 @@ namespace beer_bowling_league_api
             }));
 
             services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddAutoMapper(typeof(Startup));
         }
 
