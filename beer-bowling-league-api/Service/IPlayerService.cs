@@ -1,6 +1,5 @@
 ﻿using beer_bowling_league_api.Contracts.Requests;
 using beer_bowling_league_api.Contracts.Responses;
-using beer_bowling_league_api.Entity;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
