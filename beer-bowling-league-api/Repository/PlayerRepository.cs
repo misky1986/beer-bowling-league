@@ -33,8 +33,7 @@ namespace beer_bowling_league_api.Repository
                        
             await _dbContext.SaveChangesAsync();
 
-            return player;
-                
+            return player;  
         }
 
         public Task<bool> DeletePostAsync(Guid postId)
