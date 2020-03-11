@@ -19,8 +19,7 @@ namespace beer_bowling_league_api.tests.IntegrationTest.Controller
     {
         
         public PlayerControllerIntegrationTests()
-        {
-            var s = ";";
+        {            
         }        
 
         [Fact]
