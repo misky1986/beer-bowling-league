@@ -3,6 +3,7 @@ using beer_bowling_league_api.Contracts;
 using beer_bowling_league_api.Contracts.Responses;
 using beer_bowling_league_api.Controllers;
 using beer_bowling_league_api.Service;
+using beer_bowling_league_api.tests.Helpers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -15,11 +16,11 @@ using Xunit;
 namespace beer_bowling_league_api.tests.UnitTest.Controller
 {
 
-    public class PlayerControllerTests
+    public class PlayerControllerUnitTests : UnitTestUtilities
     {
         private readonly IMapper _mapper;
 
-        public PlayerControllerTests()
+        public PlayerControllerUnitTests()
         {
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
@@ -29,14 +30,14 @@ namespace beer_bowling_league_api.tests.UnitTest.Controller
         }
 
         [Fact]
-        public async Task GetAll_WithPlayersStoredInDatabase_ReturnsResponse200OkWithAllPlayers()
+        public async Task GetAllPlayers_WithPlayersStoredInDatabase_ReturnsResponse200OkWithAllPlayers()
         {
             // Given
-            var mockPlayerRepo = new Mock<IPlayerService>();
-            mockPlayerRepo.Setup(repo => repo.GetPlayersAsync())
+            var mockPlayerService = new Mock<IPlayerService>();
+            mockPlayerService.Setup(repo => repo.GetPlayersAsync())
                 .Returns(GetPlayersMockedAsync());
             
-            var controller = new PlayerController(_mapper, mockPlayerRepo.Object);
+            var controller = new PlayerController(_mapper, mockPlayerService.Object);
 
             // When 
             var response = await controller.GetAll() as OkObjectResult;            
@@ -56,7 +57,7 @@ namespace beer_bowling_league_api.tests.UnitTest.Controller
         }
 
         [Fact]
-        public async Task GetAll_WithNoPlayersStoredInDatabase_ReturnsResponseNotFound()
+        public async Task GetAllPlayers_WithNoPlayersStoredInDatabase_ReturnsResponseNotFound()
         {
             // Given
             var mockedPlayerService = new Mock<IPlayerService>();
@@ -74,7 +75,7 @@ namespace beer_bowling_league_api.tests.UnitTest.Controller
         }
         
         [Fact]
-        public async Task GetAll_PlayerServiceResponseIsNull_ReturnsResponseNotFound()
+        public async Task GetAllPlayers_PlayerServiceResponseIsNull_ReturnsResponseNotFound()
         {
             // Given
             var mockedPlayerService = new Mock<IPlayerService>();
@@ -89,33 +90,6 @@ namespace beer_bowling_league_api.tests.UnitTest.Controller
             // Then
             mockedPlayerService.Verify(p => p.GetPlayersAsync());
             response.StatusCode.Should().Be(HttpStatusCode.NotFound.GetHashCode());
-        }
-
-        private async Task<IEnumerable<PlayerResponseDto>> GetPlayersMockedAsync()
-        {
-            List<PlayerResponseDto> playerList = new List<PlayerResponseDto>();
-            
-            for (int i = 1; i < 4; i++)
-            {
-                var player = new PlayerResponseDto()
-
-                {                    
-                    Age = i,
-                    FirstName = "John" + i,
-                    LastName = "Doe" + i,
-                    Alias = "Dooezer" + i
-                };
-                playerList.Add(player);
-            }
-
-            return await Task.FromResult(playerList);
-        }
-
-        private Task<IEnumerable<PlayerResponseDto>> GetEmptyPlayerListsAsync()
-        {
-            IEnumerable<PlayerResponseDto> playerList = new List<PlayerResponseDto>();
-
-            return Task.FromResult(playerList);
-        }
+        }        
     }
 }

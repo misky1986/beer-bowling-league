@@ -3,8 +3,6 @@ using beer_bowling_league_api.Contracts.Requests;
 using beer_bowling_league_api.Contracts.Responses;
 using beer_bowling_league_api.tests.Helpers;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;

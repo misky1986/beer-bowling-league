@@ -40,7 +40,7 @@ namespace beer_bowling_league_api.tests.Helpers
                         {
                             var scopedServices = scope.ServiceProvider;
                             var db = scopedServices.GetRequiredService<ApplicationDbContext>();
-                            var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<Startup>>>();
+                            var logger = scopedServices.GetRequiredService<ILogger<Startup>>();
 
                             // Ensure the database is created.
                             db.Database.EnsureCreated();
@@ -48,7 +48,7 @@ namespace beer_bowling_league_api.tests.Helpers
                             try
                             {
                                 // Seed the database with test data.
-                                Utilities.InitializeDbForTests(db);
+                                IntegrationTestUtilities.InitializeDbForTests(db);
                             }
                             catch (Exception ex)
                             {

@@ -19,6 +19,8 @@ namespace beer_bowling_league_api.Contracts
             CreateMap<Player, PlayerResponseDto>();
             CreateMap<Player, CreatePlayerResponseDto>();
 
+            CreateMap<Team, TeamResponseDto>();
+
         }
     }
 }

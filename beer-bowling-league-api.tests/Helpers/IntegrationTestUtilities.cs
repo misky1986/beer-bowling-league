@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace beer_bowling_league_api.tests.Helpers
 {
-    public class Utilities
+    public class IntegrationTestUtilities
     {
         public static void InitializeDbForTests(ApplicationDbContext db)
         {

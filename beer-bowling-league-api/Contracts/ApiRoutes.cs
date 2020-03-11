@@ -14,5 +14,14 @@
             public const string Update = Base + "/players/{playerId}";
             public const string Delete = Base + "/players/{playerId}";
         }
+
+        public static class Teams
+        {
+            public const string Create = Base + "/teams";
+            public const string Get = Base + "/teams/{teamId}";
+            public const string GetAll = Base + "/teams";
+            public const string Update = Base + "/teams/{teamId}";
+            public const string Delete = Base + "/teams/{teamId}";
+        }
     }
 }
