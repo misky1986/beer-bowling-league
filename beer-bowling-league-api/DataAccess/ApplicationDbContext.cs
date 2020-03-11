@@ -13,5 +13,7 @@ namespace beer_bowling_league_api.DataAccess
 
         public DbSet<Player> Players { get; set; }
 
+        public DbSet<Team> Teams { get; set; }
+
     }
 }

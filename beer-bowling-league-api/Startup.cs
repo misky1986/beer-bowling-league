@@ -38,6 +38,8 @@ namespace beer_bowling_league_api
 
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddAutoMapper(typeof(Startup));
         }
 
