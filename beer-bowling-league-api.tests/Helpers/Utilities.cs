@@ -9,7 +9,7 @@ namespace beer_bowling_league_api.tests.Helpers
     {
         public static void InitializeDbForTests(ApplicationDbContext db)
         {
-            db.Players.AddRange(GetSeedingMessages());
+            db.Players.AddRange(GetSeedingPlayers());
             db.SaveChanges();
         }
 
@@ -19,7 +19,7 @@ namespace beer_bowling_league_api.tests.Helpers
             InitializeDbForTests(db);
         }
         
-        public static List<Player> GetSeedingMessages()
+        public static List<Player> GetSeedingPlayers()
         {
             return new List<Player>()
             {

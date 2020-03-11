@@ -2,7 +2,7 @@
 
 namespace beer_bowling_league_api.Contracts.Responses
 {
-    public class PlayerCreatedResponseDto
+    public class CreatePlayerResponseDto
     {
         public Guid Id { get; set; }
     }

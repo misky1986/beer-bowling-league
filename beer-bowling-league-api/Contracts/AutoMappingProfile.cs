@@ -11,13 +11,13 @@ namespace beer_bowling_league_api.Contracts
         public AutoMappingProfile()
         {
             // Request to domain model
-            CreateMap<PlayerRequestDto, Player>()
+            CreateMap<CreatePlayerRequestDto, Player>()
                 .ForMember(dest => dest.BirthDay, 
                 opt => opt.MapFrom(src => new DateTime(src.YearOfBirth, src.Mounth, src.Day)));
 
             // Domain model to response dto
             CreateMap<Player, PlayerResponseDto>();
-            CreateMap<Player, PlayerCreatedResponseDto>();
+            CreateMap<Player, CreatePlayerResponseDto>();
 
         }
     }

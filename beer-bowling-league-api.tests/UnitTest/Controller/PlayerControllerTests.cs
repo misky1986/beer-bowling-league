@@ -50,7 +50,7 @@ namespace beer_bowling_league_api.tests.UnitTest.Controller
             playerList.ElementAt(0).Age.Should().Be(1);
             playerList.ElementAt(0).FirstName.Should().Be("John1");
             playerList.ElementAt(0).LastName.Should().Be("Doe1");
-            playerList.ElementAt(0).Alias.Should().Be("Doozer1");            
+            playerList.ElementAt(0).Alias.Should().Be("Dooezer1");            
             playerList.ElementAt(1).Age.Should().Be(2);
             playerList.ElementAt(2).Age.Should().Be(3);
         }
@@ -103,7 +103,7 @@ namespace beer_bowling_league_api.tests.UnitTest.Controller
                     Age = i,
                     FirstName = "John" + i,
                     LastName = "Doe" + i,
-                    Alias = "Doozer" + i
+                    Alias = "Dooezer" + i
                 };
                 playerList.Add(player);
             }

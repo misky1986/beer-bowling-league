@@ -21,13 +21,13 @@ namespace beer_bowling_league_api.Service
             _mapper = mapper;
         }
 
-        public async Task<PlayerCreatedResponseDto> CreatePlayerAsync(PlayerRequestDto player)
+        public async Task<CreatePlayerResponseDto> CreatePlayerAsync(CreatePlayerRequestDto player)
         {
             var mappedDomainPlayer = _mapper.Map<Player>(player);
 
             var createdPlayer = await _playerRepository.CreatePlayerAsync(mappedDomainPlayer);
 
-            return _mapper.Map<PlayerCreatedResponseDto>(createdPlayer);
+            return _mapper.Map<CreatePlayerResponseDto>(createdPlayer);
         }
 
         public async Task<IEnumerable<PlayerResponseDto>> GetPlayersAsync()
@@ -42,7 +42,7 @@ namespace beer_bowling_league_api.Service
             throw new NotImplementedException();
         }        
 
-        public Task<bool> UpdatePostAsync(PlayerRequestDto playertoUpdate)
+        public Task<bool> UpdatePostAsync(CreatePlayerRequestDto playertoUpdate)
         {
             throw new NotImplementedException();
         }

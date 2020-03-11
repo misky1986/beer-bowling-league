@@ -10,9 +10,9 @@ namespace beer_bowling_league_api.Service
     {
         Task<IEnumerable<PlayerResponseDto>> GetPlayersAsync();
         Task<PlayerResponseDto> GetPlayerByIdAsync(Guid id);
-        Task<PlayerCreatedResponseDto> CreatePlayerAsync(PlayerRequestDto player);
+        Task<CreatePlayerResponseDto> CreatePlayerAsync(CreatePlayerRequestDto player);
 
-        Task<bool> UpdatePostAsync(PlayerRequestDto playertoUpdate);
+        Task<bool> UpdatePostAsync(CreatePlayerRequestDto playertoUpdate);
 
         Task<bool> DeletePostAsync(Guid postId);
     }

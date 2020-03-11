@@ -40,7 +40,7 @@ namespace beer_bowling_league_api.Controllers
         }
 
         [HttpPost(ApiRoutes.Players.Create)]
-        public async Task<IActionResult> Create([FromBody] PlayerRequestDto playerRequestDto)
+        public async Task<IActionResult> Create([FromBody] CreatePlayerRequestDto playerRequestDto)
         {                      
             var createdPlayer = await _playerService.CreatePlayerAsync(playerRequestDto);
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace beer_bowling_league_api.Contracts
+﻿namespace beer_bowling_league_api.Contracts
 {
     public class ApiRoutes
     {
