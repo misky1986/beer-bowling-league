@@ -1,0 +1,136 @@
+﻿@using System.Diagnostics
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient  Http
+
+@page "/player"
+
+<h3>Player Edit</h3>
+@if (playerModels == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm Model="@player" OnValidSubmit="@ValidSubmit">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="name" class="control-label">FirstName: </label>
+                    <InputText id="firstName" @bind-Value="player.FirstName" class="form-control" />
+                    <ValidationMessage For="@(() => player.FirstName)" />
+                </div>
+                <div class="form-group">
+                    <label for="address" class="control-label">LastName: </label>
+                    <InputText id="lastName" @bind-Value="player.LastName" class="form-control" />
+                    <ValidationMessage For="@(() => player.LastName)" />
+                </div>
+                <div class="form-group">
+                    <label for="city" class="control-label">Age: </label>
+                    <InputNumber id="age" @bind-Value="player.Age" class="form-control" />
+                    <ValidationMessage For="@(() => player.Age)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Alias: </label>
+                    <InputText id="alias" @bind-Value="player.Alias" class="form-control" />
+                    <ValidationMessage For="@(() => player.Alias)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Year Of Birth: </label>
+                    <InputNumber id="yearOfBirth" @bind-Value="player.YearOfBirth" class="form-control" />
+                    <ValidationMessage For="@(() => player.YearOfBirth)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Mounth: </label>
+                    <InputNumber id="mounth" @bind-Value="player.Mounth" class="form-control" />
+                    <ValidationMessage For="@(() => player.Mounth)" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label">Day: </label>
+                    <InputNumber id="day" @bind-Value="player.Day" class="form-control" />
+                    <ValidationMessage For="@(() => player.Day)" />
+                </div>
+                <button type="submit">Add Player</button>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Alias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in playerModels)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Age</td>
+                            <td>@item.Alias</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@code {
+    private List<PlayerModel> playerModels = null;
+
+    public class PlayerModel
+    {
+        [Required]
+        [StringLength(16, ErrorMessage = "First name is too long (16 character limit).")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(32, ErrorMessage = "First name is too long (32 character limit).")]
+        public string LastName { get; set; }
+
+        [Range(15, 150, ErrorMessage = "Age ouf of range from 15 to 150")]
+        public int Age { get; set; }
+
+        [Required]
+        [StringLength(1000, MinimumLength = 1, ErrorMessage = "Alias is requiered and needs to be at least 1 character long")]
+        public string Alias { get; set; }
+
+        [Required]
+        [Range(1900, 3000, ErrorMessage = "Year of birth out of range from 1900 to 3000")]
+        public int YearOfBirth { get; set; }
+
+        [Required]
+        [Range(1, 12, ErrorMessage = "Mounth of out of range from 1 to 12")]
+        public int Mounth { get; set; }
+
+        [Required]
+        [Range(1, 31, ErrorMessage = "Day of out of range from 1 to 31")]
+        public int Day { get; set; }
+    }
+
+    PlayerModel player = new PlayerModel();
+
+    private async Task ValidSubmit()
+    {
+        Console.WriteLine("Valid form input!");
+        await Http.PostJsonAsync("https://localhost:44388/api/v1/players", player);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        playerModels = await Http.GetJsonAsync<List<PlayerModel>>("https://localhost:44388/api/v1/players");
+    }
+
+    public class PlayerModelRequest
+    {
+        public PlayerModel[] results { get; set; }
+    }
+}
