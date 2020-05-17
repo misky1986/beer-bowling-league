@@ -28,7 +28,6 @@ namespace beer_bowling_league_api.tests.Helpers
                             services.Remove(descriptor);
                         }
 
-
                         // Add ApplicationDbContext using an in-memory database for testing.
                         services.AddDbContext<ApplicationDbContext>(options => { options.UseInMemoryDatabase("InMemoryDbForTesting"); });
 
